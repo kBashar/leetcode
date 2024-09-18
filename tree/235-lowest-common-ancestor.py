@@ -40,3 +40,30 @@ class Solution:
             
             if node.right:
                     queue.put((ancestors, node.right))
+
+
+## Eficient solution
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+from queue import SimpleQueue
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+
+        queue = SimpleQueue()
+
+        while root:
+            if p.val > root.val and q.val > root.val:
+                root = root.right
+            elif p.val < root.val and q.val < root.val:
+                root = root.left
+            else:
+                break
+        return root
